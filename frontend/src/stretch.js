@@ -7,11 +7,26 @@ class Stretch {
     // initialization
     constructor(instructions){
         this.instructions = instructions;
-        // make this instance's data accesible in html
+        // create an list element container for this instance
         this.element = document.createElement('li')
         this.element.dataset.id = this.id
         this.element.id = 'stretch-${this.id}'
         // add this instance to class array
         Stretch.all.push(this)
+    }
+
+    // by separating this from .appendDOM(), it's easier to add an 'update' feature later
+    stretchHTML(){
+        // add html to display data in this instance's list element
+        this.element.innerHTML += `
+            <div>
+                <p>${this.instructions}</p>
+            </div>
+        `
+        return this.element
+    }
+
+    appendDOM(){
+        Stretch.stretchContainer.appendChild(stretchHTML())
     }
 }
