@@ -10,7 +10,7 @@ class MuscleService{
         fetch('${this.endpoint}/muscles')
         .then(resp => resp.json())
         .then(muscles => {
-
+            // hash of muscles from database
         })
     }
 }
