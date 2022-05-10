@@ -4,8 +4,8 @@ class Stretch {
     // create a method to also remove it from array
     static all = []
     static stretchContainer = document.getElementById("stretch-container")
-    // initialization
-    constructor(instructions){
+    // initialization using ES6 syntax to destructure properties and values ie: the ({})
+    constructor({instructions}){
         this.instructions = instructions;
         // create an list element container for this instance
         this.element = document.createElement('li')
@@ -27,6 +27,6 @@ class Stretch {
     }
 
     appendDOM(){
-        Stretch.stretchContainer.appendChild(stretchHTML())
+        Stretch.stretchContainer.appendChild(this.stretchHTML())
     }
 }
