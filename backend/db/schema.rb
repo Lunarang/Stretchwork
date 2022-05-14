@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_05_10_173516) do
+ActiveRecord::Schema.define(version: 2022_05_14_163643) do
 
   create_table "muscles", force: :cascade do |t|
     t.string "name"
@@ -18,13 +18,24 @@ ActiveRecord::Schema.define(version: 2022_05_10_173516) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "routines", force: :cascade do |t|
+    t.string "name"
+    t.integer "muscle_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["muscle_id"], name: "index_routines_on_muscle_id"
+  end
+
   create_table "stretches", force: :cascade do |t|
     t.text "instructions"
     t.integer "muscle_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "name"
+    t.index "\"muscle\"", name: "index_stretches_on_muscle"
     t.index ["muscle_id"], name: "index_stretches_on_muscle_id"
   end
 
+  add_foreign_key "routines", "muscles"
   add_foreign_key "stretches", "muscles"
 end
