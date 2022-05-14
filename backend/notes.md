@@ -23,4 +23,3 @@
         [x] t.references :muscle, null: false, foreign_key: true
     Validations
         [x] must have unique name
-        [x] must have at least 1 muscle (selection of at least 1 stretch will be validated within the new routine form)

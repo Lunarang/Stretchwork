@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_05_14_163643) do
+ActiveRecord::Schema.define(version: 2022_05_14_233805) do
 
   create_table "muscles", force: :cascade do |t|
     t.string "name"
@@ -18,12 +18,19 @@ ActiveRecord::Schema.define(version: 2022_05_14_163643) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "routines", force: :cascade do |t|
-    t.string "name"
-    t.integer "muscle_id", null: false
+  create_table "muscles_routines", force: :cascade do |t|
+    t.integer "muscle_id"
+    t.integer "routine_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["muscle_id"], name: "index_routines_on_muscle_id"
+    t.index ["muscle_id"], name: "index_muscles_routines_on_muscle_id"
+    t.index ["routine_id"], name: "index_muscles_routines_on_routine_id"
+  end
+
+  create_table "routines", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "stretches", force: :cascade do |t|
@@ -36,6 +43,5 @@ ActiveRecord::Schema.define(version: 2022_05_14_163643) do
     t.index ["muscle_id"], name: "index_stretches_on_muscle_id"
   end
 
-  add_foreign_key "routines", "muscles"
   add_foreign_key "stretches", "muscles"
 end

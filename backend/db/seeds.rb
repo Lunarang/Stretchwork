@@ -17,3 +17,22 @@ Stretch.create(name: "Supine Twist", instructions: "Start by lying flat on your 
 muscle: exob)
 Stretch.create(name: "Seated Figure Four", instructions: "Start in a seated position slowly pull your leg to your chest and externally rotate your hip while keeping your spine straight.  You should feel this stretch in your glute.", 
 muscle: glute)
+
+r1 = Routine.create(name: "Max's Routine")
+r1.muscles << quad
+r1.muscles << psoas
+
+r2 = Routine.create(name: "Kelly's Routine")
+r2.muscles << ham
+
+r3 = Routine.create(name: "Erin's Routine")
+r3.muscles << psoas
+r3.muscles << quad
+r3.muscles << latdor
+
+r4 = Routine.create(name: "Joe's Routine")
+r4.muscles << exob
+r4.muscles << latdor
+
+r5 = Routine.create(name: "Angelika's Routine")
+r5.muscles << glute
