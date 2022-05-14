@@ -7,7 +7,7 @@ class StretchService{
 
     // 1: Read/Index action
     getStretches(){
-        fetch('${this.endpoint}/stretches')
+        fetch(`${this.endpoint}/stretches`)
         .then(resp => resp.json())
         .then(stretches => { // hash of stretches from database
             for (const stretch of stretches){
