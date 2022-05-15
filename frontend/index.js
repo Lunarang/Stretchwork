@@ -1,26 +1,47 @@
-// global variables
-const base_url = "http://127.0.0.1:3000"
-const stretchService = new StretchService(base_url)
-const routineService = new RoutineService(base_url)
-const muscleService = new MuscleService(base_url)
+// GLOBAL VARIABLES
+    const base_url = "http://127.0.0.1:3000"
+    const stretchService = new StretchService(base_url);
+    const routineService = new RoutineService(base_url);
+    const muscleService = new MuscleService(base_url);
 
-routineService.getRoutines()
+routineService.getRoutines();
+// Creates and hides new routine form
+Routine.renderForm();
 
-// clicking on title displays routines index
-const h1 = document.querySelector('h1')
-h1.addEventListener('click', () => routineService.getRoutines())
+// SELECTORS
+    const h1 = document.querySelector('h1'); // Stretchwork Title
+    const h2 = document.querySelector('h2'); // Routine Name
+    const h3 = document.querySelector('h3'); // Muscle Name
+    const h4 = document.querySelector('h4'); // Stretch Name
+    const routineBttn =  document.getElementById('routineBttn'); // New Routine Button
 
-// clicking on routine name displays routine's muscles and stretches
-const h2 = document.querySelector('h2')
-console.log(h2)
-// h2.addEventListener('click', () => muscleService.getMuscles())
 
-// 'Build a Routine' button action renders form
-const buildRoutine =  document.getElementById('buildRoutine')
-buildRoutine.addEventListener('click', () => Routine.renderForm())
+// EVENT LISTENERS
+    // Click Stretchwork Title
+    h1.addEventListener('click', refreshPage);
 
-// 'Submit' button action for new routine form
-Routine.routineForm.addEventListener('submit', handleSubmit)
+    // Click 'Build a Routine' Button
+    routineBttn.addEventListener('click', toggleForm);
+
+    // 'Submit' button action for new routine form
+    Routine.routineForm.addEventListener('submit', handleSubmit)
+
+// FUNCTIONS
+    // Refreshes the page to take user 'home'
+    function refreshPage(){
+        window.location.reload();
+    }
+
+    // Toggles between showing/hiding new routine form
+    function toggleForm(event){
+        const x = Routine.routineForm;
+
+        if (x.style.display === 'none') {
+            x.style.display = 'block';
+        } else {
+            x.style.display = 'none';
+        }
+    }
 
 function handleSubmit(){
     event.preventDefault()
