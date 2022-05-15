@@ -1,16 +1,19 @@
-// make all service calls to back end regarding muscle object
+// make all service calls to back end regarding muscle objects
 
-class MuscleService{
+class MuscleService {
     constructor(endpoint){
         this.endpoint = endpoint
     }
 
-    // 1: Read/Index action
+    // 1: Read/Index action (get)
     getMuscles(){
-        fetch('${this.endpoint}/muscles')
+        fetch(`${this.endpoint}/muscles`)
         .then(resp => resp.json())
         .then(muscles => {
-            // hash of muscles from database
+            for (const muscle of muscles){
+                const m = new Muscle(muscle)
+                m.appendDOM()
+            }
         })
     }
 }
