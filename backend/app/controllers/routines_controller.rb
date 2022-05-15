@@ -5,7 +5,7 @@ class RoutinesController < ApplicationController
   def index
     @routines = Routine.all
 
-    render json: @routines
+    render json: @routines, include: :muscles
   end
 
   # GET /routines/1
