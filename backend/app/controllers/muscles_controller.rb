@@ -5,7 +5,7 @@ class MusclesController < ApplicationController
   def index
     @muscles = Muscle.all
 
-    render json: @muscles
+    render json: @muscles, include: :stretches
   end
 
   # GET /muscles/1
