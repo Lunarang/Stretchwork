@@ -12,7 +12,6 @@ class StretchService{
         .then(stretches => { // hash of stretches from database
             for (const stretch of stretches){
                 const s = new Stretch(stretch)
-                s.appendDOM()
             }
         })
     }
