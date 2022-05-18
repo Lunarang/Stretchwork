@@ -1,9 +1,10 @@
-class Routine {
+class Routine{
     static all = []
     static routineContainer = document.getElementById("routine-container")
     static routineForm = document.getElementById("form-container")
 
-    constructor({name, muscles}){
+    constructor({id, name, muscles}){
+        this.id = id;
         this.name = name;
         // collect muscle ids
         const newArr = muscles.map(myFunction)
@@ -12,38 +13,55 @@ class Routine {
         }
         this.muscleIds = newArr;
         // create an list element container for this instance
-        this.element = document.createElement('li')
+        this.element = document.createElement('div')
         this.element.dataset.id = this.id
-        this.element.id = 'routine-${this.id}'
+        this.element.id = `routine-${this.id}`
         // this.element.addEventListener('click', this.handleClick())
         // add this instance to class array
         Routine.all.push(this)
     }
 
     routineHTML(){
-        // add html to display data in this instance's list element
-        this.element.innerHTML += `
-            <h2>${this.name}</h2>
-            <button id="delete-bttn">Delete</button>
-        `
-        return this.element
+        this.element.innerHTML += 
+            `
+                <h2>${this.name}</h2>
+                <ul>
+                    <div id="muscle-container-${this.id}">
+                    </div>
+                </ul>
+                <button id="delete-bttn">Delete</button>
+            `
+        return this.element;
     }
 
     appendDOM(){
         Routine.routineContainer.appendChild(this.routineHTML())
+        this.renderMuscles()
     }
 
-    showRoutine(){
-        this.element.innerHTML += 
-        `
-            <h2>${this.name}</h2>
-            <button id="delete-bttn">Delete</button>
-        `
-        return this.element
+    renderMuscles(){
+        // Use routine's muscle array to find 
+        // corresponding instance of muscle object and add each object's html to DOM
+        const muscles = Muscle.all.filter(findMuscle, this.muscleIds);
+
+        function findMuscle (value){
+            return this.includes(value.id);
+        }
+
+        // Select muscle container
+        const muscleContainer = document.querySelector(`#muscle-container-${this.id}`);
+        
+        // Iterate over each muscle object to retrieve html
+        // Append muscle object's html to this routine
+        for (const muscle of muscles){
+            const m = muscle.element.innerHTML
+            muscleContainer.insertAdjacentHTML('afterbegin', m)
+        }
     }
 
     static renderForm(){
-        Routine.routineForm.innerHTML += `
+        Routine.routineForm.innerHTML += 
+        `
         <form>
             <label for="name">Name:</label><br>
             <input type="text" id="name" name="name"><br>
@@ -73,9 +91,4 @@ class Routine {
     //         RoutineService.deleteRoutine(this.id)
     //     }
     // }
-
-    // clicking on routine name displays routine's muscles and stretches
-    // const h2 = document.querySelector('h2')
-    // console.log(h2)
-    // h2.addEventListener('click', () => muscleService.getMuscles())
 }
