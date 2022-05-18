@@ -1,10 +1,12 @@
 // GLOBAL VARIABLES
     const base_url = "http://127.0.0.1:3000"
     const stretchService = new StretchService(base_url);
-    const routineService = new RoutineService(base_url);
     const muscleService = new MuscleService(base_url);
+    const routineService = new RoutineService(base_url);
 
+muscleService.getMuscles();
 routineService.getRoutines();
+
 // Creates and hides new routine form
 Routine.renderForm();
 
@@ -26,6 +28,17 @@ Routine.renderForm();
     // 'Submit' button action for new routine form
     Routine.routineForm.addEventListener('submit', handleSubmit)
 
+    // Click a Routine Name
+    // if(h2){
+    //     h2.addEventListener('click', viewRoutine);
+    //     // Displays target routine's muscles
+    //     function viewRoutine(event){
+    //         const thisRoutine = document.querySelector(`#${event.target.id}`);
+    //         thisRoutine.renderMuscles();
+    //         console.log("yes!")
+    //     }
+    //   }
+
 // FUNCTIONS
     // Refreshes the page to take user 'home'
     function refreshPage(){
@@ -33,7 +46,7 @@ Routine.renderForm();
     }
 
     // Toggles between showing/hiding new routine form
-    function toggleForm(event){
+    function toggleForm(){
         const x = Routine.routineForm;
 
         if (x.style.display === 'none') {
