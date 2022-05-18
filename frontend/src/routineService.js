@@ -17,37 +17,37 @@ class RoutineService{
         })
     }
 
-    // 2: Create action
-    createRoutine(){
-        const routine = {
-            name: document.getElementById('name').value,
-        }
+    // // 2: Create action
+    // createRoutine(){
+    //     const routine = {
+    //         name: document.getElementById('name').value,
+    //     }
 
-        const configObj = {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            }
-            body: JSON.stringify(contact)
-        }
+    //     const configObj = {
+    //         method: 'POST',
+    //         headers: {
+    //             'Content-Type': 'application/json'
+    //         }
+    //         body: JSON.stringify(contact)
+    //     }
         
-        fetch(`${this.endpoint}/routines`)
-        .then(resp => resp.json())
-        .then(routine => {
-            const r = new Routine(routine)
-            r.appendDOM()
-        })
-    }
+    //     fetch(`${this.endpoint}/routines`)
+    //     .then(resp => resp.json())
+    //     .then(routine => {
+    //         const r = new Routine(routine)
+    //         r.appendDOM()
+    //     })
+    // }
 
-    // 3: Delete action
-    deleteRoutine(id){
-        fetch(`${this.endpoint}/routines/${id}`, {
-            method: 'DELETE',
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        })
-        .then(resp => resp.json())
-        .then(json => alert(json.message))
-    }
+    // // 3: Delete action
+    // deleteRoutine(id){
+    //     fetch(`${this.endpoint}/routines/${id}`, {
+    //         method: 'DELETE',
+    //         headers: {
+    //             'Content-Type': 'application/json'
+    //         }
+    //     })
+    //     .then(resp => resp.json())
+    //     .then(json => alert(json.message))
+    // }
 }
