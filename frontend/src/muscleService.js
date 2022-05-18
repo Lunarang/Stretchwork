@@ -12,7 +12,7 @@ class MuscleService {
         .then(muscles => {
             for (const muscle of muscles){
                 const m = new Muscle(muscle)
-                m.appendDOM()
+                m.muscleHTML();
             }
         })
     }
