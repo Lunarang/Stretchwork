@@ -3,9 +3,10 @@ class Muscle {
     static muscleContainer = document.getElementById("muscle-container")
 
     // initialization
-    constructor(name, stretches){
+    constructor({id, name, stretches}){
+        this.id = id;
         this.name = name;
-
+        
         // collect stretch ids
         const newArr = stretches.map(myFunction)
         function myFunction(stretch) {
@@ -16,7 +17,7 @@ class Muscle {
         // make this instance's data accesible in html block
         this.element = document.createElement('li')
         this.element.dataset.id = this.id
-        this.element.id = 'muscle-${this.id}'
+        this.element.id = `muscle-${this.id}`
 
         // add this instance to class array
         Muscle.all.push(this)
@@ -24,12 +25,12 @@ class Muscle {
 
     muscleHTML(){
         this.element.innerHTML += 
-        `
-            <h3>${this.name}</h3>
-            <li>
-                <h4>stretch name</h4>
-                <p>stretch instructions</p>
-            </li>
-        `
+            `
+                <h3>${this.name}</h3>
+                <div id="stretch-container-${this.id}">
+                </div>
+            `
+        return this.element;
     }
+
 }
