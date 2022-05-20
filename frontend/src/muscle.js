@@ -1,7 +1,6 @@
 class Muscle {
     static all = []
-    static muscleContainer = document.getElementById("muscle-container")
-
+    
     // initialization
     constructor({id, name, stretches}){
         this.id = id;
@@ -15,7 +14,7 @@ class Muscle {
         this.stretchIds = newArr;
 
         // make this instance's data accesible in html block
-        this.element = document.createElement('li')
+        this.element = document.createElement('div')
         this.element.dataset.id = this.id
         this.element.id = `muscle-${this.id}`
 
@@ -27,10 +26,20 @@ class Muscle {
         this.element.innerHTML += 
             `
                 <h3>${this.name}</h3>
-                <div id="stretch-container-${this.id}">
-                </div>
             `
+        const stretches = Stretch.all.filter(findStretch, this.stretchIds);
+
+        function findStretch (value){
+            return this.includes(value.id);
+        }
+
+        const stretchContainer = this.element
+
+        for (const stretch of stretches){
+            const s = stretch.element.innerHTML
+            stretchContainer.insertAdjacentHTML('beforeend', s)
+        }
+
         return this.element;
     }
-
 }
