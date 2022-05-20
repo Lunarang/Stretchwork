@@ -4,6 +4,7 @@
     const muscleService = new MuscleService(base_url);
     const routineService = new RoutineService(base_url);
 
+stretchService.getStretches();
 muscleService.getMuscles();
 routineService.getRoutines();
 
