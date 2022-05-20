@@ -25,10 +25,8 @@ class Routine{
         this.element.innerHTML += 
             `
                 <h2>${this.name}</h2>
-                <ul>
                     <div id="muscle-container-${this.id}">
                     </div>
-                </ul>
                 <button id="delete-bttn">Delete</button>
             `
         return this.element;
