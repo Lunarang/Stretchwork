@@ -36,6 +36,7 @@ class RoutinesController < ApplicationController
   # DELETE /routines/1
   def destroy
     @routine.destroy
+    render json: {message: 'Routine successfully deleted'}
   end
 
   private
