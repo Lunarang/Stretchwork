@@ -8,16 +8,12 @@ stretchService.getStretches();
 muscleService.getMuscles();
 routineService.getRoutines();
 
-// Creates and hides new routine form
-Routine.renderForm();
-
 // SELECTORS
     const h1 = document.querySelector('h1'); // Stretchwork Title
     const h2 = document.querySelector('h2'); // Routine Name
     const h3 = document.querySelector('h3'); // Muscle Name
     const h4 = document.querySelector('h4'); // Stretch Name
     const routineBttn =  document.getElementById('routineBttn'); // New Routine Button
-
 
 // EVENT LISTENERS
     // Click Stretchwork Title
@@ -27,7 +23,7 @@ Routine.renderForm();
     routineBttn.addEventListener('click', toggleForm);
 
     // 'Submit' button action for new routine form
-    Routine.routineForm.addEventListener('submit', handleSubmit)
+    Routine.routineForm.addEventListener('submit', submitBttn)
 
     // Click a Routine Name
     // if(h2){
@@ -57,8 +53,9 @@ Routine.renderForm();
         }
     }
 
-function handleSubmit(){
-    event.preventDefault()
-    RoutineService.createRoutine()
-    event.target.reset() //clears form
-}
+    // Makes POST request to backend & appends DOM with new routine
+    function submitBttn(){
+        event.preventDefault()
+        routineService.createRoutine()
+        event.target.reset() //clears form
+    }
