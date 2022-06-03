@@ -15,10 +15,10 @@ class RoutinesController < ApplicationController
 
   # POST /routines
   def create
-    @routine = Routine.new(routine_params)
+    @routine = Routine.create(routine_params)
 
     if @routine.save
-      render json: @routine, status: :created, location: @routine
+      render json: @routine, include: :muscles, status: :created, location: @routine
     else
       render json: @routine.errors, status: :unprocessable_entity
     end
@@ -47,6 +47,6 @@ class RoutinesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def routine_params
-      params.require(:routine).permit(:name)
+      params.require(:routine).permit(:name, :muscle_ids => [] )
     end
 end
