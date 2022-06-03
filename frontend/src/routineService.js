@@ -19,12 +19,24 @@ class RoutineService{
     }
 
     // 2: Create action
-    createRoutine(event){
-        const data = {
-            name: event.target.dataset.name,
+    createRoutine(){
+        // Collect muscle ids from form
+        var selected = [];
+        for (var option of 
+            document.getElementById('muscles').options){
+                if(option.selected){
+                    selected.push(option.value);
+                }
+            }
 
+        // Format data to meet strong param standards
+        const data = { 
+            routine: {
+                name: document.getElementById('name').value,
+                muscle_ids: selected
+            }
         }
-        
+
         fetch(`${this.endpoint}/routines`, {
             method: 'POST',
             headers: {
@@ -60,9 +72,9 @@ class RoutineService{
 
         if (index > -1) {
             routines.splice(index, 1);
+            // Delete from DOM
+            const r =  document.getElementById(`routine-${deleted.id}`);
+            r.remove();
         }
-
-        // Refresh page to update DOM
-        window.location.reload();
     }
 }
