@@ -73,61 +73,28 @@ class Routine{
         `
         <form>
             <label for="name">Routine Name:</label><br>
-            <input type="text" id="name" name="name"><br>
+            <input type="text" id="name" name="name" required><br>
 
-            <label for="muscles">Choose a muscle:</label><br>
-            <select name="muscles" id="muscles">
+            <label for="muscles">Choose Muscles:</label><br>
+            <select name="muscles" id="muscles" multiple>
 
-            </select><br>
+            </select>
 
-            <label for="stretches">Choose a stretch:</label><br>
-            <select name="stretches" id="stretches">
-
-            </select><br>
-
-            <input type="button" id="addMuscle" value="Add Another Muscle" />
             <input type="submit" id="create">
         </form>
         `
-        // Selectors
-        const muscleSelect = document.querySelector('#muscles');
-        const stretchSelect = document.querySelector('#stretches');
-        const addMuscle = document.querySelector('#addMuscle');
+        // SELECTORS
+            const muscleSelect = document.querySelector('#muscles');
+        
+        // VARIABLES
+            const muscles = Muscle.all;
 
-        // Add muscles to dropdown menu
-        const muscles = Muscle.all;
-
-        for (const muscle of muscles){
-            const html = `<option value="${muscle.name}">${muscle.name}</option>`
-            muscleSelect.insertAdjacentHTML('beforeend', html)
-        }
-
-        // Action when a muscle is selected
-        muscleSelect.onchange = function() {
-            // Clear stretch options
-            stretchSelect.innerHTML = "";
-
-            // Find muscle object and it's stretches
-            const selected = muscles.find(muscle => muscle.name === this.value)
-            const stretches = Stretch.all.filter(findStretch, selected.stretchIds);
-
-            function findStretch (value){
-                return this.includes(value.id);
+        // FUNCTIONS
+            // Muscle Options HTML
+            for (const muscle of muscles){
+                const html = `<option value="${muscle.id}">${muscle.name}</option>`
+                muscleSelect.insertAdjacentHTML('beforeend', html)
             }
-
-            // Add associated stretches to drop down menu
-            for (const stretch of stretches){
-                const stretchHtml = `<option value="${stretch.name}">${stretch.name}</option>`
-                stretchSelect.insertAdjacentHTML('beforeend', stretchHtml)
-            }
-        }
-
-        // Click on Add Muscle button
-        // addMuscle.addEventListener('click', makeInputs);
-
-        // function makeInputs(){
-
-        // }
 
         Routine.routineForm.style.display = 'none';
     }
