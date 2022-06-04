@@ -10,9 +10,6 @@ routineService.getRoutines();
 
 // SELECTORS
     const h1 = document.querySelector('h1'); // Stretchwork Title
-    const h2 = document.querySelector('h2'); // Routine Name
-    const h3 = document.querySelector('h3'); // Muscle Name
-    const h4 = document.querySelector('h4'); // Stretch Name
     const routineBttn =  document.getElementById('routineBttn'); // New Routine Button
 
 // EVENT LISTENERS
@@ -24,17 +21,6 @@ routineService.getRoutines();
 
     // 'Submit' button action for new routine form
     Routine.routineForm.addEventListener('submit', submitBttn)
-
-    // Click a Routine Name
-    // if(h2){
-    //     h2.addEventListener('click', viewRoutine);
-    //     // Displays target routine's muscles
-    //     function viewRoutine(event){
-    //         const thisRoutine = document.querySelector(`#${event.target.id}`);
-    //         thisRoutine.renderMuscles();
-    //         console.log("yes!")
-    //     }
-    //   }
 
 // FUNCTIONS
     // Refreshes the page to take user 'home'
@@ -58,4 +44,5 @@ routineService.getRoutines();
         event.preventDefault()
         routineService.createRoutine()
         event.target.reset() //clears form
+        Routine.routineForm.style.display = 'none' //hides form
     }
