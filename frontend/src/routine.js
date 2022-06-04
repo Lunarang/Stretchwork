@@ -18,6 +18,7 @@ class Routine{
         this.element = document.createElement('div')
         this.element.dataset.id = this.id
         this.element.id = `routine-${this.id}`
+        this.element.className = 'routine'
 
         // add this instance to class array
         Routine.all.push(this)
@@ -29,7 +30,9 @@ class Routine{
                 <h2>${this.name}</h2>
                     <div id="muscle-container-${this.id}">
                     </div>
-                <button id="delete-bttn">Delete</button>
+                <div class="delete-div">
+                <button class="delete-bttn" id="delete-bttn">Delete</button>
+                </div>
             `
         return this.element;
     }
